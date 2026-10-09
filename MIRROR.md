@@ -1,6 +1,6 @@
 # @arki/ui
 
-Published version: **0.1.3**
+Published version: **0.1.4**
 
 This repository is a **read-only mirror** of the [@arki/ui](https://www.npmjs.com/package/@arki/ui) npm package.
 
