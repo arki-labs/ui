@@ -1,3 +1,4 @@
+/** Chart: Recharts wrappers that take colours from the design tokens. */
 'use client';
 
 import * as React from 'react';
@@ -13,7 +14,7 @@ export type ChartConfig = Record<
   {
     label?: React.ReactNode;
     icon?: React.ComponentType;
-  } & ({ color?: string; theme?: never } | { color?: never; theme: Record<keyof typeof THEMES, string> })
+  } & ({ color?: string; theme?: never } | { color?: never; theme: { [K in keyof typeof THEMES]: string } })
 >;
 
 type ChartContextProps = {
@@ -175,7 +176,7 @@ function ChartTooltipContent({
       >
         {nestLabel ? null : tooltipLabel}
         <div className="grid gap-1.5">
-          {payload.map((item: any, index: number) => {
+          {payload.map((item, index) => {
             const key = `${nameKey || item.name || item.dataKey || 'value'}`;
             const itemConfig = getPayloadConfigFromPayload(config, item, key);
             const indicatorColor = color || item.payload?.fill || item.color;
@@ -270,7 +271,7 @@ function ChartLegendContent({
       ref={ref}
       className={cn('flex items-center justify-center gap-4', verticalAlign === 'top' ? 'pb-3' : 'pt-3', className)}
     >
-          {payload.map((item: any) => {
+          {payload.map(item => {
             const key = `${nameKey || item.dataKey || 'value'}`;
             const itemConfig = getPayloadConfigFromPayload(config, item, key);
 

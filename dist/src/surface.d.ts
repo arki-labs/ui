@@ -1,3 +1,4 @@
+/** Surface: a background layer with elevation levels. */
 import type { ComponentProps } from 'react';
 export type SurfaceProps = ComponentProps<'div'> & {
     withShadow?: boolean;

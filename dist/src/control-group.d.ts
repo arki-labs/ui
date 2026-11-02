@@ -1,3 +1,4 @@
+/** Control group: joins related inputs and buttons into one bar. */
 import * as React from 'react';
 export type ControlGroupProps = {
     orientation?: 'horizontal' | 'vertical';

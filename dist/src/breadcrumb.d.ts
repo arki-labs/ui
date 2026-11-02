@@ -1,3 +1,4 @@
+/** Breadcrumb: a path of links to the current page. */
 import * as React from 'react';
 declare function Breadcrumb({ ...props }: React.ComponentProps<'nav'>): React.JSX.Element;
 declare function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>): React.JSX.Element;

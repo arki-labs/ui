@@ -1,3 +1,4 @@
+/** Alert: a boxed message with a title and a description. */
 import type { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 declare const alertVariants: (props?: ({

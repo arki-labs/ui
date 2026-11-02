@@ -12,7 +12,9 @@ export type ChartConfig = Record<string, {
     theme?: never;
 } | {
     color?: never;
-    theme: Record<keyof typeof THEMES, string>;
+    theme: {
+        [K in keyof typeof THEMES]: string;
+    };
 })>;
 declare function ChartContainer({ id, className, children, config, ref, ...props }: React.ComponentProps<'div'> & {
     config: ChartConfig;

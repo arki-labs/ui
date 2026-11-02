@@ -1,3 +1,4 @@
+/** Timeline: a vertical list of events with dots and connectors. */
 import * as React from 'react';
 export type TimelineProps = {
     orientation?: 'horizontal' | 'vertical';

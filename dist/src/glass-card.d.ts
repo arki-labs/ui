@@ -1,3 +1,4 @@
+/** Glass card: a translucent card with tone variants. */
 import type { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 export declare const glassTones: readonly ['default', 'slate', 'gray', 'zinc', 'stone', 'red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'];

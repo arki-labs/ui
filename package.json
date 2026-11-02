@@ -1,6 +1,6 @@
 {
   "name": "@arki/ui",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "React component library for ARKI apps — Base UI primitives styled with Tailwind v4 semantic tokens: forms, overlays, navigation, data display and charts.",
   "license": "MIT",
   "repository": {
@@ -23,11 +23,6 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./src/index.ts",
-      "browser": "./src/index.ts"
-    },
     "./utils": {
       "types": "./dist/src/cn.d.ts",
       "import": "./src/cn.ts",
@@ -38,15 +33,10 @@
       "import": "./src/cn.ts",
       "browser": "./src/cn.ts"
     },
-    "./toast": {
-      "types": "./dist/src/toast/index.d.ts",
-      "import": "./src/toast/index.ts",
-      "browser": "./src/toast/index.ts"
-    },
-    "./design-system": {
-      "types": "./dist/src/design-system.d.ts",
-      "import": "./src/design-system.ts",
-      "browser": "./src/design-system.ts"
+    "./copy-text": {
+      "types": "./dist/src/copy-text.d.ts",
+      "import": "./src/copy-text.ts",
+      "browser": "./src/copy-text.ts"
     },
     "./accordion": {
       "types": "./dist/src/accordion.d.ts",
@@ -364,10 +354,110 @@
       "browser": "./src/tooltip.tsx"
     },
     "./styles/animations.css": "./src/styles/animations.css",
-    "./*": {
-      "types": "./dist/src/*.d.ts",
-      "import": "./src/*.tsx",
-      "browser": "./src/*.tsx"
+    "./styles/nav.css": "./src/styles/nav.css",
+    "./as-child": {
+      "types": "./dist/src/as-child.d.ts",
+      "import": "./src/as-child.tsx",
+      "browser": "./src/as-child.tsx"
+    },
+    "./math-input/complex-input": {
+      "types": "./dist/src/math-input/complex-input.d.ts",
+      "import": "./src/math-input/complex-input.tsx",
+      "browser": "./src/math-input/complex-input.tsx"
+    },
+    "./math-input/index": {
+      "types": "./dist/src/math-input/index.d.ts",
+      "import": "./src/math-input/index.tsx",
+      "browser": "./src/math-input/index.tsx"
+    },
+    "./slot": {
+      "types": "./dist/src/slot.d.ts",
+      "import": "./src/slot.tsx",
+      "browser": "./src/slot.tsx"
+    },
+    "./hooks/async-memo": {
+      "types": "./dist/src/hooks/async-memo.d.ts",
+      "import": "./src/hooks/async-memo.tsx",
+      "browser": "./src/hooks/async-memo.tsx"
+    },
+    "./hooks/copy-to-clipboard": {
+      "types": "./dist/src/hooks/copy-to-clipboard.d.ts",
+      "import": "./src/hooks/copy-to-clipboard.tsx",
+      "browser": "./src/hooks/copy-to-clipboard.tsx"
+    },
+    "./hooks/debounce": {
+      "types": "./dist/src/hooks/debounce.d.ts",
+      "import": "./src/hooks/debounce.tsx",
+      "browser": "./src/hooks/debounce.tsx"
+    },
+    "./hooks/hotkeys": {
+      "types": "./dist/src/hooks/hotkeys.d.ts",
+      "import": "./src/hooks/hotkeys.tsx",
+      "browser": "./src/hooks/hotkeys.tsx"
+    },
+    "./hooks/is-client": {
+      "types": "./dist/src/hooks/is-client.d.ts",
+      "import": "./src/hooks/is-client.tsx",
+      "browser": "./src/hooks/is-client.tsx"
+    },
+    "./hooks/local-storage": {
+      "types": "./dist/src/hooks/local-storage.d.ts",
+      "import": "./src/hooks/local-storage.tsx",
+      "browser": "./src/hooks/local-storage.tsx"
+    },
+    "./hooks/long-press": {
+      "types": "./dist/src/hooks/long-press.d.ts",
+      "import": "./src/hooks/long-press.tsx",
+      "browser": "./src/hooks/long-press.tsx"
+    },
+    "./hooks/media-query": {
+      "types": "./dist/src/hooks/media-query.d.ts",
+      "import": "./src/hooks/media-query.tsx",
+      "browser": "./src/hooks/media-query.tsx"
+    },
+    "./hooks/pagination": {
+      "types": "./dist/src/hooks/pagination.d.ts",
+      "import": "./src/hooks/pagination.tsx",
+      "browser": "./src/hooks/pagination.tsx"
+    },
+    "./hooks/timeout": {
+      "types": "./dist/src/hooks/timeout.d.ts",
+      "import": "./src/hooks/timeout.tsx",
+      "browser": "./src/hooks/timeout.tsx"
+    },
+    "./hooks/toggle": {
+      "types": "./dist/src/hooks/toggle.d.ts",
+      "import": "./src/hooks/toggle.tsx",
+      "browser": "./src/hooks/toggle.tsx"
+    },
+    "./hooks/touch": {
+      "types": "./dist/src/hooks/touch.d.ts",
+      "import": "./src/hooks/touch.tsx",
+      "browser": "./src/hooks/touch.tsx"
+    },
+    "./hooks/use-swipe-gesture": {
+      "types": "./dist/src/hooks/use-swipe-gesture.d.ts",
+      "import": "./src/hooks/use-swipe-gesture.tsx",
+      "browser": "./src/hooks/use-swipe-gesture.tsx"
+    },
+    "./hooks/use-touch-feedback": {
+      "types": "./dist/src/hooks/use-touch-feedback.d.ts",
+      "import": "./src/hooks/use-touch-feedback.tsx",
+      "browser": "./src/hooks/use-touch-feedback.tsx"
+    },
+    "./hooks/use-viewport": {
+      "types": "./dist/src/hooks/use-viewport.d.ts",
+      "import": "./src/hooks/use-viewport.tsx",
+      "browser": "./src/hooks/use-viewport.tsx"
+    },
+    "./theme": {
+      "types": "./dist/src/theme/index.d.ts",
+      "import": "./src/theme/index.ts",
+      "browser": "./src/theme/index.ts"
+    },
+    "./theme/script": {
+      "types": "./dist/src/theme/script.d.ts",
+      "import": "./src/theme/script.ts"
     },
     "./package.json": "./package.json"
   },
@@ -381,29 +471,33 @@
     "!src/**/tests/**",
     "!src/**/test/**",
     "!src/**/__tests__/**",
+    "docs/agent-guide.md",
+    "docs/components.md",
+    "llms.txt",
     "README.md",
     "LICENSE",
     "package.json"
   ],
   "dependencies": {
-    "@arki/date": "0.2.0",
-    "@arki/design-systems": "0.1.2",
-    "@arki/icons": "0.1.1",
-    "@arki/react-hooks": "0.1.1",
-    "@arki/theme": "0.2.1",
+    "@arki/date": "0.5.0",
+    "@arki/icons": "0.2.0",
+    "@arki/log": "0.4.0",
     "@base-ui/react": "^1.8.0",
     "@hookform/resolvers": "^5.9.1",
+    "@mantine/hooks": "9.7.1",
+    "@reecelucas/react-use-hotkeys": "^2.0.0",
+    "@rehooks/local-storage": "^2.4.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "colord": "^2.10.0",
-    "debug": "^4.4.3",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.5.0",
     "katex": "^0.19.0",
     "react-colorful": "^5.8.1",
     "react-day-picker": "9.14.0",
     "react-hook-form": "^7.89.0",
+    "react-hotkeys-hook": "^5.3.3",
     "react-resizable-panels": "^2.1.9",
     "react-spinners": "^0.17.1",
     "react-spring": "^10.0.4",
@@ -412,11 +506,12 @@
     "recharts": "^3.10.1",
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.7.0",
+    "usehooks-ts": "^3.1.1",
     "vaul": "^1.1.2"
   },
   "peerDependencies": {
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "publishConfig": {
     "access": "public"

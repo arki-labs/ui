@@ -1,33 +1,59 @@
+Read-only mirror of `@arki/ui` v0.2.0. Source and issues: arki-labs/arki. Docs: https://arki.dev/packages/ui. Published 2026-11-02 with provenance https://www.npmjs.com/package/@arki/ui/v/0.2.0#provenance.
+
 # @arki/ui
 
-React component library for ARKI apps: Base UI primitives styled with Tailwind v4 semantic tokens. Forms, overlays, navigation, data display, charts — one import per component.
+React component library for ARKI apps: Base UI primitives styled with Tailwind v4 semantic tokens. Forms, overlays, navigation, data display and charts. One import per component.
 
-> **Source-first package.** `@arki/ui` ships TypeScript source (`src/*.tsx`) as its runtime entry plus `.d.ts` declarations. Your bundler compiles it: Vite, TanStack Start, Next.js and Bun all do. Plain Node without a bundler is not supported.
-
-## Installation
+## Install
 
 ```sh
-bun add @arki/ui @arki/design-systems @arki/theme react react-dom
+bun add @arki/ui react react-dom
 ```
 
-Peer dependencies: `react` and `react-dom` 19.
+`react` and `react-dom` 19 are peer dependencies. `@arki/ui/theme` sets light and dark mode.
 
-## Setup
+## Quick start
 
-Components read semantic tokens (`--background`, `--primary`, `--muted`, …) from a design system. Pick one from `@arki/design-systems` and let Tailwind see the component classes:
+The components read the standard shadcn token names (`background`, `foreground`, `card`, `popover`, `primary`, `secondary`, `muted`, `accent`, `destructive`, `border`, `input`, `ring`, `chart-1` to `chart-5`, `sidebar-*`, `radius`). Any shadcn-compatible theme works. `Callout` also reads three status colours (`success`, `warning`, `info`) and four tints (`success-surface`, `warning-surface`, `info-surface`, `destructive-surface`).
+
+Define the tokens, map them onto Tailwind, and let Tailwind scan the component sources.
 
 ```css
 /* src/styles/global.css */
 @import 'tailwindcss';
-@import '@arki/design-systems/atelier/fonts.css';
-@import '@arki/design-systems/atelier/tokens.css';
-@import '@arki/design-systems/atelier/theme-bridge.css';
 
-/* Tailwind must scan the component sources; adjust the path to where the package is installed. */
+/* Your theme: paste one from ui.shadcn.com/themes, or write your own. */
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 4%);
+  --primary: hsl(240 6% 10%);
+  --primary-foreground: hsl(0 0% 98%);
+  /* … the rest of the names above … */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(240 10% 4%);
+  --foreground: hsl(0 0% 98%);
+  /* … */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  /* … one --color-* line per colour token … */
+  --radius-lg: var(--radius);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/* Adjust the path to where @arki/ui is installed. */
 @source '../node_modules/@arki/ui/src';
 ```
 
-## Usage
+Then import each component from its own subpath.
 
 ```tsx
 import { Button } from '@arki/ui/button';
@@ -48,14 +74,74 @@ export function Example() {
 }
 ```
 
-Every component is its own subpath (`@arki/ui/dialog`, `@arki/ui/select`, `@arki/ui/table`, `@arki/ui/chart`, …). See the `exports` map in `package.json` for the full list.
+## When not to use this
 
-## Related packages
+- Your app does not use Tailwind v4. The components are styled with Tailwind classes and have no stylesheet of their own.
+- You need a headless library to style yourself. Use `@base-ui/react` directly. This package is the styled layer on top of it.
+- You mix two themes in one app. These components read one set of tokens.
+- You build for React Native. Use `@arki/native-ui`.
 
-- `@arki/design-systems` — tokens, Tailwind bridge and fonts for `atelier`, `workbench`, `arena`.
-- `@arki/theme` — light / dark / system provider and no-flash script.
-- `@arki/icons` — icon sets behind one React entry point.
-- `@arki/react-hooks` — the hooks the components use, reusable on their own.
+## Runtime support
+
+Source-distributed: ships TypeScript/TSX, needs a bundler (Vite with the TanStack Start stack).
+
+## Public imports
+
+There is no root import. Every component is its own subpath: `@arki/ui/button`, `@arki/ui/dialog`, `@arki/ui/select`, `@arki/ui/table`, `@arki/ui/chart`. [`llms.txt`](./llms.txt) lists all of them with their names. The [component reference](./docs/components.md) says what each export is for.
+
+| Group | Subpaths |
+| --- | --- |
+| Actions | `button`, `toggle`, `toggle-group`, `toolbar`, `control-group` |
+| Forms | `form`, `input`, `input-base`, `input-otp`, `textarea`, `textarea-with-autosize`, `select`, `checkbox`, `radio-group`, `switch`, `slider`, `label`, `date-picker`, `color-picker`, `math-input`, `complex-input` |
+| Overlays | `dialog`, `alert-dialog`, `drawer`, `sheet`, `popover`, `hover-card`, `tooltip`, `command`, `sonner` (toasts) |
+| Menus and navigation | `dropdown-menu`, `context-menu`, `menubar`, `navigation-menu`, `breadcrumb`, `pagination`, `tabs`, `sidebar` |
+| Layout and surfaces | `card`, `glass-card`, `panel`, `surface`, `separator`, `scroll-area`, `resizable`, `tool-panels`, `aspect-ratio`, `accordion`, `collapsible` |
+| Data display | `table`, `chart`, `badge`, `avatar`, `alert`, `callout`, `progress`, `skeleton`, `spinners`, `timeline`, `carousel`, `calendar`, `katex` |
+| Helpers | `cn`, `slot`, `as-child`, `scroll-to-top` |
+| Styles | `styles/animations.css`, `styles/nav.css` (the page navigation crossfade) |
+| Theme | `theme` (`ThemeProvider`, `useTheme`), `theme/script` (`themeScript`, `themeDetectionFn`, `THEME_STORAGE_KEY`) |
+| Hooks | `hooks/debounce`, `hooks/local-storage`, `hooks/media-query`, `hooks/hotkeys`, `hooks/copy-to-clipboard`, `hooks/timeout`, `hooks/toggle`, `hooks/pagination`, `hooks/async-memo`, `hooks/is-client`, `hooks/long-press`, `hooks/touch`, `hooks/use-viewport`, `hooks/use-swipe-gesture`, `hooks/use-touch-feedback` |
+
+## Failure behaviour
+
+Components do not return failure values. Mistakes in how you compose them show up in three ways.
+
+- Some compound parts need their parent. These hooks throw a plain `Error` when the parent is missing: `useFormField` (inside `FormField`), `useSidebar` (inside `SidebarProvider`), and the hooks for `Chart`, `Carousel`, `ControlGroup` and `Timeline`. Fix the tree; do not catch the error.
+- A missing token gives a wrong colour, not an error. If a page looks unstyled, check the `@source` line and the token imports first.
+- `Toaster` reads the theme from `@arki/ui/theme`. Without a `ThemeProvider` it uses `system`.
+- The theme never throws. `useTheme()` outside a `ThemeProvider` returns `theme: undefined` and a `setTheme` that does nothing. A blocked `localStorage` drops writes, so the theme lasts until reload. A stored name not in `themes` becomes `defaultTheme`. If system preference detection is missing or throws, `system` resolves to `light`.
+- Hooks under `hooks/*` do not throw for bad input. `useAsyncMemo` returns `{ value, isPending, failure, retry }`: `value` is `undefined` (or your `initial`) until the promise resolves, a rejected promise becomes `failure`, and `retry()` runs the factory again. On the server, `useMediaQuery` and the `useIs*` hooks return `false`, and `useViewport` returns a 1024 by 768 desktop. It returns that same desktop on the first client render too, then reads the real window after mount, so hydration matches the server.
+
+## Limits
+
+- Tailwind only sees classes it can scan. If `@source` does not point at the installed `@arki/ui/src`, components render with no styling and no error.
+- Load one theme per app. Boundary: loading two token files in one stylesheet makes the later file win for every shared name, so components mix two palettes.
+- `katex` does not load KaTeX's stylesheet. Import `katex/dist/katex.min.css` yourself, or maths renders unstyled.
+- Imports must name a subpath. `import { Button } from '@arki/ui'` fails: the package has no root entry.
+- Some components rely on browser APIs (`matchMedia`, `ResizeObserver`). Render them on the client; in tests use a DOM environment.
+- `useViewport` calls anything under 640px mobile and under 1024px tablet. `useIsMobile` calls anything under 768px mobile. Boundary: at 700px, `useViewport().isMobile` is `false` and `useIsMobile()` is `true`. Pick one family per component.
+- `useAsyncMemo` drops a result when its dependencies change before it resolves. It does not cancel the request.
+- The server renders `defaultTheme`. `themeScript()` fixes the page before paint, but React state first matches the server render. Put `suppressHydrationWarning` on `<html>`.
+- The theme script and `ThemeProvider` are separate. Give both the same `storageKey`, `attribute`, `themes` and `defaultTheme`, or the page flashes.
+- `setTheme` only accepts a name in `themes`. Boundary: with the default themes, `setTheme('sepia')` stores `system`, not `sepia`. Add `'sepia'` to `themes` first.
+
+```ts run expect
+import { themeScript } from '@arki/ui/theme/script';
+
+const script = themeScript({ storageKey: 'app-theme', themes: ['light', 'dark', 'sepia'] });
+console.log(script.includes('"storageKey":"app-theme"'), script.includes('"sepia"'));
+```
+
+```text
+true true
+```
+
+## Design-system rules
+
+1. Style with semantic classes: `bg-background`, `bg-card`, `text-muted-foreground`, `border-border`.
+2. One theme per app. Never mix two token sets.
+3. App-specific colours get new token names. Do not redefine a shared name.
+4. If a component needs a token outside the names above, propose the smallest extension and get confirmation first: every app theme must then define it.
 
 <!-- bench:start -->
 ## Benchmarks
@@ -138,6 +224,19 @@ Reproduce: `bunx arki-bench run --profile publish` in the package directory.
 <!-- bench:meta {"schema":1,"suite":"@arki/ui","specHash":"90948ea457b5d678","profile":"publish","date":"2026-10-13T09:02:32.088Z","harness":"0.0.1"} -->
 <!-- bench:end -->
 
+## Related packages
+
+- `@arki/icons`: icon sets behind one React entry point.
+
+## Documentation
+
+- [docs/agent-guide.md](./docs/agent-guide.md): the model, a task map, the rules that bite, and how to verify.
+- [llms.txt](./llms.txt): the short form for agents.
+
+## Support
+
+Report bugs and questions at <https://github.com/arki-labs/arki/issues>.
+
 ## License
 
-MIT
+MIT. See [LICENSE](./LICENSE).

@@ -1,3 +1,4 @@
+/** Panel: a titled work area with sections and dividers. */
 import type { ComponentProps } from 'react';
 export type PanelProps = {
     spacing?: 'medium' | 'small';

@@ -1,3 +1,4 @@
+/** Card: a surface with header, content and footer. */
 import * as React from 'react';
 declare function Card({ className, ...props }: React.ComponentProps<'div'>): React.JSX.Element;
 declare function CardHeader({ className, ...props }: React.ComponentProps<'div'>): React.JSX.Element;

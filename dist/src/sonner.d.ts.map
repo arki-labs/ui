@@ -1,1 +1,1 @@
-{"version":3,"file":"sonner.d.ts","sourceRoot":"","sources":["../../src/sonner.tsx"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,QAAQ,CAAC;AAK3C,QAAA,MAAM,OAAO,iBAAkB,YAAY,gCAmB1C,CAAC;AAEF,OAAO,EAAG,OAAO,EAAE,CAAC;AAEpB,OAAO,EAAC,KAAK,EAAC,MAAM,QAAQ,CAAC"}
+{"version":3,"file":"sonner.d.ts","sourceRoot":"","sources":["../../src/sonner.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,QAAQ,CAAC;AAK3C,QAAA,MAAM,OAAO,iBAAkB,YAAY,gCAmB1C,CAAC;AAEF,OAAO,EAAG,OAAO,EAAE,CAAC;AAEpB,OAAO,EAAC,KAAK,EAAC,MAAM,QAAQ,CAAC"}
