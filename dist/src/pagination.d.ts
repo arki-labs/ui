@@ -1,6 +1,6 @@
 /** Pagination: page links with previous and next. */
 import * as React from 'react';
-import type { Button } from './button';
+import type { Button } from './button.js';
 declare function Pagination({ className, ...props }: React.ComponentProps<'nav'>): React.JSX.Element;
 declare function PaginationContent({ className, ...props }: React.ComponentProps<'ul'>): React.JSX.Element;
 declare function PaginationItem({ ...props }: React.ComponentProps<'li'>): React.JSX.Element;

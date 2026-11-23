@@ -5,14 +5,14 @@ import * as React from 'react';
 
 import { Sigma } from '@arki/icons/phosphor';
 
-import { Button } from '../button';
-import { cn } from '../cn';
-import { Input } from '../input';
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
-import { Separator } from '../separator';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../tabs';
-import { CATEGORY_LABELS, CATEGORY_ORDER, MATH_CONSTANTS } from './constants';
-import { displayToNumber, numberToDisplay, parseFraction } from './utils';
+import { Button } from '../button.js';
+import { cn } from '../cn.js';
+import { Input } from '../input.js';
+import { Popover, PopoverContent, PopoverTrigger } from '../popover.js';
+import { Separator } from '../separator.js';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../tabs.js';
+import { CATEGORY_LABELS, CATEGORY_ORDER, MATH_CONSTANTS } from './constants.js';
+import { displayToNumber, numberToDisplay, parseFraction } from './utils.js';
 
 export type MathInputProps = {
   value: number | null;
@@ -54,10 +54,13 @@ export function MathInput({
   const [numerator, setNumerator] = React.useState('');
   const [denominator, setDenominator] = React.useState('');
 
-  // Sync display string when value changes externally
-  React.useEffect(() => {
+  // Sync display string when value changes externally (adjusting state while rendering, not in an effect)
+  const [previousValue, setPreviousValue] = React.useState(value);
+  // Object.is, not !==: NaN (a 0/0 result) is never !== itself, which would set state on every render.
+  if (!Object.is(value, previousValue)) {
+    setPreviousValue(value);
     setDisplayValue(numberToDisplay(value));
-  }, [value]);
+  }
 
   const tabList = React.useMemo(() => {
     const tabs: { value: string; label: string }[] = [{ value: 'constants', label: 'Constants' }];

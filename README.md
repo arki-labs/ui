@@ -1,4 +1,4 @@
-Read-only mirror of `@arki/ui` v0.2.0. Source and issues: arki-labs/arki. Docs: https://arki.dev/packages/ui. Published 2026-11-02 with provenance https://www.npmjs.com/package/@arki/ui/v/0.2.0#provenance.
+Read-only mirror of `@arki/ui` v0.2.1. Source and issues: arki-labs/arki. Docs: https://arki.dev/packages/ui. Published 2026-11-23 with provenance https://www.npmjs.com/package/@arki/ui/v/0.2.1#provenance.
 
 # @arki/ui
 
@@ -83,7 +83,17 @@ export function Example() {
 
 ## Runtime support
 
-Source-distributed: ships TypeScript/TSX, needs a bundler (Vite with the TanStack Start stack).
+Ships compiled JavaScript (`dist/`) for a bundler (Vite with the TanStack Start stack). The CSS entries need a bundler. `src/` ships too, so Tailwind can scan it with `@source`.
+
+<!-- runtimes:start -->
+| Runtime | Result | Version tested | Date (UTC) |
+| --- | --- | --- | --- |
+| node | n/a | - | 2026-11-05 |
+| bun | n/a | - | 2026-11-05 |
+| deno | n/a | - | 2026-11-05 |
+| browser | pass | Chromium 156.0.8078.4 | 2026-11-05 |
+| hermes | n/a | - | 2026-11-05 |
+<!-- runtimes:end -->
 
 ## Public imports
 
@@ -111,6 +121,10 @@ Components do not return failure values. Mistakes in how you compose them show u
 - `Toaster` reads the theme from `@arki/ui/theme`. Without a `ThemeProvider` it uses `system`.
 - The theme never throws. `useTheme()` outside a `ThemeProvider` returns `theme: undefined` and a `setTheme` that does nothing. A blocked `localStorage` drops writes, so the theme lasts until reload. A stored name not in `themes` becomes `defaultTheme`. If system preference detection is missing or throws, `system` resolves to `light`.
 - Hooks under `hooks/*` do not throw for bad input. `useAsyncMemo` returns `{ value, isPending, failure, retry }`: `value` is `undefined` (or your `initial`) until the promise resolves, a rejected promise becomes `failure`, and `retry()` runs the factory again. On the server, `useMediaQuery` and the `useIs*` hooks return `false`, and `useViewport` returns a 1024 by 768 desktop. It returns that same desktop on the first client render too, then reads the real window after mount, so hydration matches the server.
+
+## Observability
+
+Renders in the app's own process. Its only I/O is synchronous `localStorage` reads and writes for the theme and panel layout, which need no span; the app's spans cover everything else.
 
 ## Limits
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog';
-import { type AsChildProp } from './as-child';
+import type { AsChildProp } from './as-child.js';
 declare function Dialog({ ...props }: DialogPrimitive.Root.Props): React.JSX.Element;
 declare function DialogTrigger({ asChild, children, ...props }: DialogPrimitive.Trigger.Props & AsChildProp): React.JSX.Element;
 declare function DialogPortal({ ...props }: DialogPrimitive.Portal.Props): React.JSX.Element;

@@ -7,17 +7,17 @@ import { cva } from 'class-variance-authority';
 
 import { SidebarIcon, SidebarSimpleIcon } from '@arki/icons/phosphor';
 import { getLogger } from '@arki/log';
-import { useIsClient } from './hooks/is-client';
-import { useIsMobile, useIsTablet } from './hooks/media-query';
+import { useIsClient } from './hooks/is-client.js';
+import { useIsMobile, useIsTablet } from './hooks/media-query.js';
 
-import { Button } from './button';
-import { cn } from './cn';
-import { Slot } from './slot';
-import { Input } from './input';
-import { Separator } from './separator';
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from './sheet';
-import { Skeleton } from './skeleton';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, WithTooltip } from './tooltip';
+import { Button } from './button.js';
+import { cn } from './cn.js';
+import { Slot } from './slot.js';
+import { Input } from './input.js';
+import { Separator } from './separator.js';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from './sheet.js';
+import { Skeleton } from './skeleton.js';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, WithTooltip } from './tooltip.js';
 
 // One logger per sidebar concern; output shows only when the app configures `@arki/log`.
 const sidebarLog = getLogger('arki:ui:sidebar');
@@ -29,6 +29,10 @@ const keyboardLog = getLogger('arki:ui:sidebar:keyboard');
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+
+function writeSidebarCookie(open: boolean) {
+  document.cookie = `${SIDEBAR_COOKIE_NAME}=${open}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+}
 const SIDEBAR_WIDTH = '16rem';
 const SIDEBAR_WIDTH_MOBILE = '18rem';
 const SIDEBAR_WIDTH_ICON = '3rem';
@@ -93,7 +97,9 @@ const SidebarProvider = React.forwardRef<
   // listing `open` as a dep. Without this, every state change minted a new
   // `setOpen` identity, which broke downstream `useEffect` deps.
   const openRef = React.useRef(open);
-  openRef.current = open;
+  React.useLayoutEffect(() => {
+    openRef.current = open;
+  }, [open]);
 
   stateLog.debug('SidebarProvider: initial state computed', {
     _open,
@@ -129,7 +135,7 @@ const SidebarProvider = React.forwardRef<
         maxAge: SIDEBAR_COOKIE_MAX_AGE,
       });
       try {
-        document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+        writeSidebarCookie(openState);
       } catch {
         // A sandboxed frame or an opaque origin refuses cookies with a SecurityError. The sidebar
         // still opens and closes; it just does not remember its state for the next visit.
@@ -719,6 +725,11 @@ function SidebarMenuBadge({ className, ...props }: React.ComponentProps<'div'>) 
   );
 }
 
+/** Random width between 50 and 90%, so a list of skeletons looks uneven. */
+function randomSkeletonWidth() {
+  return `${Math.floor(Math.random() * 40) + 50}%`;
+}
+
 function SidebarMenuSkeleton({
   className,
   showIcon = false,
@@ -726,9 +737,8 @@ function SidebarMenuSkeleton({
 }: React.ComponentProps<'div'> & {
   showIcon?: boolean;
 }) {
-  // Random width between 50 to 90%.
   const width = React.useMemo(() => {
-    const calculatedWidth = `${Math.floor(Math.random() * 40) + 50}%`;
+    const calculatedWidth = randomSkeletonWidth();
     renderLog.debug('SidebarMenuSkeleton: calculated width', { width: calculatedWidth });
     return calculatedWidth;
   }, []);

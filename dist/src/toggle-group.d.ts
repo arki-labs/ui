@@ -2,7 +2,7 @@ import type { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { Toggle as TogglePrimitive } from '@base-ui/react/toggle';
 import { ToggleGroup as ToggleGroupPrimitive } from '@base-ui/react/toggle-group';
-import { toggleVariants } from './toggle';
+import { toggleVariants } from './toggle.js';
 type ToggleGroupCompatProps = Omit<ToggleGroupPrimitive.Props, 'value' | 'defaultValue' | 'onValueChange'> & VariantProps<typeof toggleVariants> & {
     /** Radix-era prop: 'single' (one selection) or 'multiple' (many). Maps to Base UI `multiple`. */
     type?: 'single' | 'multiple';

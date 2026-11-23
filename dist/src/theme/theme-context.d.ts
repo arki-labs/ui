@@ -1,4 +1,4 @@
-import type { ThemeDetectionOptions } from './script';
+import type { ThemeDetectionOptions } from './script.js';
 export type Theme = 'light' | 'dark' | 'system' | (string & {});
 export type ResolvedTheme = 'light' | 'dark' | (string & {});
 export type ThemeProviderProps = {

@@ -1,0 +1,25 @@
+export const MATH_CONSTANTS = [
+    { value: Math.PI, symbol: 'π', latex: '\\pi', name: 'Pi', category: 'circle' },
+    { value: Math.E, symbol: 'e', latex: 'e', name: "Euler's number", category: 'exponential' },
+    { value: (1 + Math.sqrt(5)) / 2, symbol: 'φ', latex: '\\varphi', name: 'Golden ratio', category: 'special' },
+    { value: 2 * Math.PI, symbol: 'τ', latex: '\\tau', name: 'Tau (2π)', category: 'circle' },
+    { value: Math.sqrt(2), symbol: '√2', latex: '\\sqrt{2}', name: 'Square root of 2', category: 'radical' },
+    { value: Math.sqrt(3), symbol: '√3', latex: '\\sqrt{3}', name: 'Square root of 3', category: 'radical' },
+    { value: Math.LN2, symbol: 'ln2', latex: '\\ln 2', name: 'Natural log of 2', category: 'logarithm' },
+    { value: 0.577_215_664_901_532_9, symbol: 'γ', latex: '\\gamma', name: 'Euler-Mascheroni', category: 'special' },
+];
+export const CATEGORY_ORDER = [
+    'circle',
+    'exponential',
+    'radical',
+    'logarithm',
+    'special',
+];
+export const CATEGORY_LABELS = {
+    circle: 'Circle',
+    exponential: 'Exponential',
+    radical: 'Radical',
+    logarithm: 'Logarithm',
+    special: 'Special',
+};
+//# sourceMappingURL=constants.js.map

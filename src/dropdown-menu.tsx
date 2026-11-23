@@ -6,8 +6,9 @@ import { Menu as MenuPrimitive } from '@base-ui/react/menu';
 
 import { CheckIcon, CaretRightIcon, CircleIcon } from '@arki/icons/phosphor';
 
-import { withAsChild, type AsChildProp } from './as-child';
-import { cn } from './cn';
+import { withAsChild } from './as-child.js';
+import type { AsChildProp } from './as-child.js';
+import { cn } from './cn.js';
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
   return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;

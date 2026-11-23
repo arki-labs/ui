@@ -14,7 +14,8 @@ declare function useToolPanelGroup(): ToolPanelGroupCtx;
  * Adds maximize/restore semantics so any panel within the group can be
  * expanded to fill 100% while the rest collapse, then restored to the
  * previously saved layout.  Layout is auto-persisted to localStorage using
- * `"${storagePrefix}-${id}"` as the key.
+ * `"${storagePrefix}-${id}"` as the key; a saved layout that does not fit the
+ * panels is ignored (see `ResizablePanelGroup`).
  */
 declare function ToolPanelGroup({ id, direction, className, children, storagePrefix, }: {
     id: string;

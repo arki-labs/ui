@@ -7,9 +7,9 @@ import * as React from 'react';
 import { useId } from 'react';
 import { Controller, FormProvider, useFormContext, useFormState } from 'react-hook-form';
 
-import { cn } from './cn';
-import { Label } from './label';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
+import { cn } from './cn.js';
+import { Label } from './label.js';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip.js';
 
 const Form = FormProvider;
 
@@ -167,7 +167,7 @@ function FormHints<T extends string | number | Date>({
 
   const resolved = hints.map((hint) => {
     if (typeof hint === 'object' && hint !== null && !(hint instanceof Date) && 'value' in hint && 'label' in hint) {
-      return hint as { value: T; label: React.ReactNode };
+      return hint;
     }
     const value = hint as T;
     return { value, label: renderHint?.(value) ?? value.toString() };

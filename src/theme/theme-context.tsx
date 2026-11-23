@@ -2,8 +2,8 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 
-import type { ThemeDetectionOptions } from './script';
-import { themeDetectionFn } from './script';
+import type { ThemeDetectionOptions } from './script.js';
+import { themeDetectionFn } from './script.js';
 
 const MEDIA = '(prefers-color-scheme: dark)';
 const STORAGE_KEY = 'theme';
@@ -122,7 +122,7 @@ function applyTheme(
 
     // Remove after a tick
     setTimeout(() => {
-      document.head.removeChild(css);
+      css.remove();
     }, 1);
   }
 
@@ -195,7 +195,6 @@ export function ThemeProvider({
         setSystemTheme(e.matches ? 'dark' : 'light');
       };
 
-      setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
       mediaQuery.addEventListener('change', handleChange);
       return () => {
         try {
@@ -250,7 +249,9 @@ export function ThemeProvider({
  */
 const defaultContext: UseThemeReturn = {
   theme: undefined,
-  setTheme: () => {},
+  setTheme: () => {
+    /* No ThemeProvider mounted: nothing to update. */
+  },
   resolvedTheme: undefined,
   systemTheme: undefined,
   themes: defaultThemes,

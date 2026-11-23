@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Menu as MenuPrimitive } from '@base-ui/react/menu';
-import { type AsChildProp } from './as-child';
+import type { AsChildProp } from './as-child.js';
 declare function DropdownMenu({ ...props }: MenuPrimitive.Root.Props): React.JSX.Element;
 declare function DropdownMenuPortal({ ...props }: MenuPrimitive.Portal.Props): React.JSX.Element;
 declare function DropdownMenuTrigger({ asChild, children, ...props }: MenuPrimitive.Trigger.Props & AsChildProp): React.JSX.Element;

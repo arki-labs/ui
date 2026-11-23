@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import * as React from 'react';
 import { Tooltip as TooltipPrimitive } from '@base-ui/react/tooltip';
-import { type AsChildProp } from './as-child';
+import type { AsChildProp } from './as-child.js';
 declare function TooltipProvider({ delay, delayDuration, ...props }: TooltipPrimitive.Provider.Props & {
     delayDuration?: number;
 }): React.JSX.Element;

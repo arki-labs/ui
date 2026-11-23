@@ -7,8 +7,8 @@ import useEmblaCarousel from 'embla-carousel-react';
 
 import { ArrowLeft, ArrowRight } from '@arki/icons/phosphor';
 
-import { Button } from './button';
-import { cn } from './cn';
+import { Button } from './button.js';
+import { cn } from './cn.js';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -68,6 +68,13 @@ function Carousel({
     setCanScrollNext(api.canScrollNext());
   }, []);
 
+  // Read the scroll state once for each new api while rendering, so no effect has to set state.
+  const [syncedApi, setSyncedApi] = React.useState<CarouselApi>();
+  if (api !== syncedApi) {
+    setSyncedApi(api);
+    onSelect(api);
+  }
+
   const scrollPrev = React.useCallback(() => {
     api?.scrollPrev();
   }, [api]);
@@ -96,7 +103,6 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return;
-    onSelect(api);
     api.on('reInit', onSelect);
     api.on('select', onSelect);
 

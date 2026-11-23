@@ -1,5 +1,4 @@
-/** KaTeX math, as `BlockMath` and `InlineMath`. */
-import { type ReactNode, type ComponentType } from 'react';
+import type { ReactNode, ComponentType } from 'react';
 type ErrorRenderer = (error: Error) => ReactNode;
 export type MathComponentProps = {
     /** LaTeX expression as a string. Either `math` or `children` must be provided. */

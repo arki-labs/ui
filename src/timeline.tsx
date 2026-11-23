@@ -1,7 +1,7 @@
 /** Timeline: a vertical list of events with dots and connectors. */
 import * as React from 'react';
 
-import { cn } from './cn';
+import { cn } from './cn.js';
 
 type TimelineContext = {
   orientation: 'horizontal' | 'vertical';
@@ -25,6 +25,7 @@ export type TimelineProps = {
 export const Timeline = React.forwardRef<React.ElementRef<'ol'>, TimelineProps>(
   ({ className, orientation = 'vertical', ...props }, ref) => (
     <TimelineContext.Provider value={{ orientation }}>
+      {/* eslint-disable-next-line jsx-a11y/no-redundant-roles -- keeps list semantics in Safari/VoiceOver, which drops them when list-style is none. */}
       <ol
         ref={ref}
         role="list"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AlertDialog as AlertDialogPrimitive } from '@base-ui/react/alert-dialog';
-import { type AsChildProp } from './as-child';
+import type { AsChildProp } from './as-child.js';
 declare function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props): React.JSX.Element;
 declare function AlertDialogTrigger({ asChild, children, ...props }: AlertDialogPrimitive.Trigger.Props & AsChildProp): React.JSX.Element;
 declare function AlertDialogPortal({ ...props }: AlertDialogPrimitive.Portal.Props): React.JSX.Element;

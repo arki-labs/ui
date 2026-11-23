@@ -1,5 +1,5 @@
 import { PreviewCard as PreviewCardPrimitive } from '@base-ui/react/preview-card';
-import type { AsChildProp } from './as-child';
+import type { AsChildProp } from './as-child.js';
 declare function HoverCard({ openDelay: _openDelay, closeDelay: _closeDelay, ...props }: PreviewCardPrimitive.Root.Props & {
     openDelay?: number;
     closeDelay?: number;

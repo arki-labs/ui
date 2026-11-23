@@ -1,4 +1,4 @@
-import type { ButtonProps } from './button';
+import type { ButtonProps } from './button.js';
 type ColorPickerProps = {
     value: string;
     onChange: (value: string) => void;

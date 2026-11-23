@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Menubar as MenubarPrimitive } from '@base-ui/react/menubar';
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from './dropdown-menu';
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from './dropdown-menu.js';
 declare function Menubar({ className, ...props }: MenubarPrimitive.Props): React.JSX.Element;
 declare function MenubarMenu({ ...props }: React.ComponentProps<typeof DropdownMenu>): React.JSX.Element;
 declare function MenubarGroup({ ...props }: React.ComponentProps<typeof DropdownMenuGroup>): React.JSX.Element;

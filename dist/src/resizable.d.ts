@@ -1,6 +1,12 @@
 import * as React from 'react';
 import * as ResizablePrimitive from 'react-resizable-panels';
-declare function ResizablePanelGroup({ className, ...props }: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>): React.JSX.Element;
+type PanelGroupProps = React.ComponentProps<typeof ResizablePrimitive.PanelGroup>;
+/**
+ * A panel group. With `autoSaveId`, the layout is saved to `storage` (default localStorage) and
+ * restored on mount; a saved layout that does not fit (wrong shape, or a different panel count) is
+ * ignored and the default layout is used.
+ */
+declare function ResizablePanelGroup({ className, ...props }: PanelGroupProps): React.JSX.Element;
 declare function ResizablePanel({ ...props }: React.ComponentProps<typeof ResizablePrimitive.Panel>): React.JSX.Element;
 declare function ResizableHandle({ withHandle, className, ...props }: React.ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
     withHandle?: boolean;

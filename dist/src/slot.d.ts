@@ -12,9 +12,9 @@ type SlotProps = {
  *
  * - `className` values are concatenated via `cn()`
  * - Event handlers (`on*`) are composed so both parent and child handlers run
- * - Refs are merged with `mergeRefs`
+ * - Refs are merged with `assignRefs`
  * - All other slot props override child props
  */
-export declare function Slot({ children, ref: slotRef, className: slotClassName, ...slotProps }: SlotProps): React.JSX.Element;
+export declare function Slot({ children, ref: slotRefProp, className: slotClassName, ...slotProps }: SlotProps): React.JSX.Element;
 export {};
 //# sourceMappingURL=slot.d.ts.map

@@ -1,0 +1,11 @@
+/** Checkbox: a tick box. */
+'use client';
+import { jsx as _jsx } from "react/jsx-runtime";
+import { Checkbox as CheckboxPrimitive } from '@base-ui/react/checkbox';
+import { CheckIcon } from '@arki/icons/phosphor';
+import { cn } from './cn.js';
+function Checkbox({ className, ...props }) {
+    return (_jsx(CheckboxPrimitive.Root, { "data-slot": "checkbox", className: cn('peer relative flex items-center justify-center border-input outline-ring/50 ring-ring/10 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground dark:outline-ring/40 dark:ring-ring/20 size-4 shrink-0 rounded-[4px] border shadow-xs transition-[color,box-shadow] focus-visible:ring-4 focus-visible:outline-1 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:focus-visible:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2', className), ...props, children: _jsx(CheckboxPrimitive.Indicator, { "data-slot": "checkbox-indicator", className: "grid place-content-center text-current transition-none [&>svg]:size-3.5", children: _jsx(CheckIcon, { weight: "regular" }) }) }));
+}
+export { Checkbox };
+//# sourceMappingURL=checkbox.js.map

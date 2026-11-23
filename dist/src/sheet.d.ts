@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dialog as SheetPrimitive } from '@base-ui/react/dialog';
-import { type AsChildProp } from './as-child';
+import type { AsChildProp } from './as-child.js';
 declare function Sheet({ ...props }: SheetPrimitive.Root.Props): React.JSX.Element;
 declare function SheetTrigger({ asChild, children, ...props }: SheetPrimitive.Trigger.Props & AsChildProp): React.JSX.Element;
 declare function SheetClose({ ...props }: SheetPrimitive.Close.Props): React.JSX.Element;
