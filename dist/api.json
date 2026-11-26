@@ -1,6 +1,6 @@
 {
   "package": "@arki/ui",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "entries": [
     {
       "subpath": "./accordion",
@@ -1791,7 +1791,7 @@
       "subpath": "./popover",
       "name": "PopoverContent",
       "kind": "function",
-      "signature": "declare function PopoverContent({ className, align, alignOffset, side, sideOffset, ...props }: PopoverPrimitive.Popup.Props & Pick<PopoverPrimitive.Positioner.Props, 'align' | 'alignOffset' | 'side' | 'sideOffset'>): import(\"react\").JSX.Element;",
+      "signature": "declare function PopoverContent({ className, align, alignOffset, side, sideOffset, anchor, ...props }: PopoverPrimitive.Popup.Props & Pick<PopoverPrimitive.Positioner.Props, 'align' | 'alignOffset' | 'anchor' | 'side' | 'sideOffset'>): import(\"react\").JSX.Element;",
       "jsdocSummary": ""
     },
     {

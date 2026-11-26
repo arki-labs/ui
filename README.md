@@ -1,4 +1,4 @@
-Read-only mirror of `@arki/ui` v0.2.1. Source and issues: arki-labs/arki. Docs: https://arki.dev/packages/ui. Published 2026-11-23 with provenance https://www.npmjs.com/package/@arki/ui/v/0.2.1#provenance.
+Read-only mirror of `@arki/ui` v0.2.2. Source and issues: arki-labs/arki. Docs: https://arki.dev/packages/ui. Published 2026-11-26 with provenance https://www.npmjs.com/package/@arki/ui/v/0.2.2#provenance.
 
 # @arki/ui
 

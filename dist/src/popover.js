@@ -10,8 +10,9 @@ function Popover({ ...props }) {
 function PopoverTrigger({ asChild, children, ...props }) {
     return (_jsx(PopoverPrimitive.Trigger, { "data-slot": "popover-trigger", ...props, ...withAsChild({ asChild, children }) }));
 }
-function PopoverContent({ className, align = 'center', alignOffset = 0, side = 'bottom', sideOffset = 4, ...props }) {
-    return (_jsx(PopoverPrimitive.Portal, { children: _jsx(PopoverPrimitive.Positioner, { align: align, alignOffset: alignOffset, side: side, sideOffset: sideOffset, className: "isolate z-50", children: _jsx(PopoverPrimitive.Popup, { "data-slot": "popover-content", className: cn('bg-popover text-popover-foreground z-50 w-72 rounded-md border p-4 shadow-md outline-hidden origin-(--transform-origin) duration-100 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2', className), ...props }) }) }));
+function PopoverContent({ className, align = 'center', alignOffset = 0, side = 'bottom', sideOffset = 4, anchor, ...props }) {
+    // `anchor` is the element the popup is placed against (and whose size `--anchor-width` reads). Unset, it is the trigger.
+    return (_jsx(PopoverPrimitive.Portal, { children: _jsx(PopoverPrimitive.Positioner, { align: align, alignOffset: alignOffset, anchor: anchor, side: side, sideOffset: sideOffset, className: "isolate z-50", children: _jsx(PopoverPrimitive.Popup, { "data-slot": "popover-content", className: cn('bg-popover text-popover-foreground z-50 w-72 rounded-md border p-4 shadow-md outline-hidden origin-(--transform-origin) duration-100 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2', className), ...props }) }) }));
 }
 function PopoverClose({ ...props }) {
     return _jsx(PopoverPrimitive.Close, { "data-slot": "popover-close", ...props });
